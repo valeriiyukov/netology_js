@@ -1,22 +1,21 @@
 'use strict';
 
-var points = [74989, 74990, 84990, 62000, 58480, 61800];
+const points = [74989, 74990, 84990, 62000, 58480, 61800];
 
-function getMaxValue(arr) {
-    var max = arr[0];
-    
-    for (var i = 1; i <= arr.length - 1; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    }
-    
-    return max;
-}
 
 function calcAverageValue(arr) {
-    var newArr = arr.sort(compareNum);
-    return (newArr[0] + newArr[1] +newArr[2]) / 3
+    const newArr = arr.sort(compareNum);
+    const top = 3;
+    let summ = 0;
+    
+    for (let i = 0; i <= top - 1; i++) {
+        summ += newArr[i];
+    }
+    
+    const averageValue = summ / top;
+    const maxValue = newArr[0];
+
+    return [averageValue, maxValue]
 }
 
 function compareNum(a, b) {
@@ -24,5 +23,6 @@ function compareNum(a, b) {
   if (a > b) return -1;
 }
 
-console.log(getMaxValue(points));
-console.log(calcAverageValue(points));
+
+console.log('Максимальное значение: ' + calcAverageValue(points)[1]);
+console.log('Среднее значение топ-3: ' + calcAverageValue(points)[0]);
