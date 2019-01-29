@@ -1,10 +1,12 @@
 'use strict';
 
-function setProperPoint(balance) {
-    let bs = balance.toString();
-    let b = 'баллов';
+const formatPoints = (strings, balance) => {
+    const bs = balance.toString();
+    const yourBalance = strings[0];
+    let b = strings[1]
     
     for (let value of bs) {
+        
         if (bs.substr(-2) == 11 || bs.substr(-2) == 12 || bs.substr(-2) == 13 || bs.substr(-2) == 14) {
             b = 'баллов';
         } else if (value == 1) {
@@ -14,12 +16,15 @@ function setProperPoint(balance) {
         } else {
             b = 'баллов'
         }
+        
     }
     
-    return (`Ваш балланс ${balance} ${b}`);
+    return `${yourBalance}${balance} ${b}`;
 
 }
 
-console.log(setProperPoint(523));
-console.log(setProperPoint(6000));
-console.log(setProperPoint(5001));
+const output = (points) => formatPoints`Ваш баланс ${points}баллов`;
+
+console.log(output(523));
+console.log(output(6000));
+console.log(output(5001));
